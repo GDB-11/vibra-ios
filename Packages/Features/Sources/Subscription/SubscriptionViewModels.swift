@@ -27,6 +27,30 @@ public final class LockedContentViewModel {
 
 @Observable
 @MainActor
+public final class AlbumPurchaseViewModel {
+    public let album: Album
+
+    private let billing: any BillingRepository
+
+    public init(album: Album, billing: any BillingRepository) {
+        self.album = album
+        self.billing = billing
+    }
+
+    /// Devuelve `true` si la hoja puede cerrarse.
+    public func buyAlbum() async -> Bool {
+        do {
+            try await billing.purchaseAlbum(id: album.id)
+            return true
+        } catch {
+            // Falta mostrar el error cuando exista la compra real con StoreKit.
+            return false
+        }
+    }
+}
+
+@Observable
+@MainActor
 public final class PaywallViewModel {
     public var selectedPlan: Plan.Code = .annual
     public private(set) var state: LoadState<[Plan]> = .idle

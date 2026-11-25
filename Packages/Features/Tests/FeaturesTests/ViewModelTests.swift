@@ -97,6 +97,15 @@ struct ViewModelTests {
         #expect(viewModel.annualSavingsPercent == 25)
     }
 
+    @Test func compraDeAlbumPermiteCerrarLaHoja() async throws {
+        let album = try #require(SampleData.albums.last)
+        let viewModel = AlbumPurchaseViewModel(album: album, billing: SampleBillingRepository())
+
+        let didBuy = await viewModel.buyAlbum()
+
+        #expect(didBuy)
+    }
+
     @Test func cuentaCargaElPerfil() async {
         let viewModel = AccountViewModel(auth: SampleAuthRepository(), billing: SampleBillingRepository())
 

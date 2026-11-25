@@ -40,6 +40,20 @@ nonisolated enum Route: Hashable {
     case playlist(id: String)
 }
 
+/// Hojas que se presentan sobre las pestañas.
+nonisolated enum SheetDestination: Identifiable {
+    /// Canción bloqueada (la respuesta `403`).
+    case lockedTrack(Track)
+    case albumPurchase(Album)
+
+    var id: String {
+        switch self {
+        case .lockedTrack(let track): "track-\(track.id)"
+        case .albumPurchase(let album): "album-\(album.id)"
+        }
+    }
+}
+
 /// Presentaciones a pantalla completa.
 nonisolated enum Cover: String, Identifiable {
     case player
@@ -54,7 +68,7 @@ final class AppRouter {
     var phase: AppPhase = .splash
     var selectedTab: AppTab = .home
     var paths: [AppTab: [Route]] = [:]
-    var lockedTrack: Track?
+    var sheet: SheetDestination?
     var cover: Cover?
 
     /// Cobertura que se presentará cuando termine de cerrarse la hoja.
@@ -66,15 +80,15 @@ final class AppRouter {
 
     /// SwiftUI no puede presentar sobre una hoja que se está cerrando, así que espera a `onDismiss`.
     func present(_ newCover: Cover) {
-        if lockedTrack == nil {
+        if sheet == nil {
             cover = newCover
         } else {
             pendingCover = newCover
-            lockedTrack = nil
+            sheet = nil
         }
     }
 
-    func lockedSheetDidDismiss() {
+    func sheetDidDismiss() {
         guard let pendingCover else { return }
         self.pendingCover = nil
         cover = pendingCover
@@ -88,7 +102,7 @@ final class AppRouter {
         phase = .auth
         selectedTab = .home
         paths = [:]
-        lockedTrack = nil
+        sheet = nil
         pendingCover = nil
         cover = nil
     }

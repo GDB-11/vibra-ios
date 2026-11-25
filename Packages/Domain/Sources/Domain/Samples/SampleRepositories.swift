@@ -103,5 +103,6 @@ public struct SampleBillingRepository: BillingRepository {
     public func plans() async throws -> [Plan] { SampleData.plans }
     public func subscribe(to plan: Plan.Code) async throws {}
     public func purchaseTrack(id: String) async throws {}
+    public func purchaseAlbum(id: String) async throws {}
     public func restorePurchases() async throws {}
 }

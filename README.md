@@ -40,7 +40,8 @@ Están las pantallas del diseño (estilo Aeroglass sobre Liquid Glass) con naveg
 | Lista de reproducción | Biblioteca → Listas |
 | Reproductor y minirreproductor | Tocar una canción sin candado (las de *Is This It*) |
 | Contenido bloqueado | Tocar una canción con candado |
-| Muro de pago | Insignia "Gratis", Cuenta → Suscripción, "Suscribirse" o "Comprar" en un álbum |
+| Compra de álbum | "Comprar" en un álbum bloqueado: comprarlo para siempre o suscribirse |
+| Muro de pago | Insignia "Gratis", Cuenta → Suscripción o "Suscribirse" en las hojas de compra y de contenido bloqueado |
 
 ## Integrar el backend
 
@@ -75,8 +76,7 @@ En Xcode, abre `Vibra.xcodeproj`, elige un simulador y pulsa ⌘R.
 
 ```bash
 cd Packages/Features
-xcodebuild -list   # muestra el nombre del esquema
-xcodebuild -scheme <esquema> -destination 'platform=iOS Simulator,name=<simulador>' test
+xcodebuild -scheme Features -destination 'platform=iOS Simulator,name=<simulador>' test
 ```
 
 ## Contrato de la API

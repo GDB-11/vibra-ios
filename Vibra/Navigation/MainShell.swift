@@ -30,8 +30,8 @@ struct MainShell: View {
         }
         .background { AeroBackground() }
         .ignoresSafeArea(.keyboard, edges: .bottom)
-        .sheet(item: $router.lockedTrack, onDismiss: { router.lockedSheetDidDismiss() }) { track in
-            lockedSheet(for: track)
+        .sheet(item: $router.sheet, onDismiss: { router.sheetDidDismiss() }) { destination in
+            sheetContent(destination)
         }
         .fullScreenCover(item: $router.cover) { cover in
             coverContent(cover)
@@ -128,7 +128,7 @@ struct MainShell: View {
                     library: environment.library
                 ),
                 onSelectTrack: { open($0) },
-                onBuyAlbum: { router.present(.paywall) }
+                onBuyAlbum: { router.sheet = .albumPurchase($0) }
             )
         case .artist(let id):
             ArtistView(
@@ -168,24 +168,27 @@ struct MainShell: View {
     /// En la integración real, un `403` de `streaming.streamAccess` abrirá la hoja de bloqueo.
     private func open(_ track: Track) {
         if track.isLocked {
-            router.lockedTrack = track
+            router.sheet = .lockedTrack(track)
         } else {
             environment.playback.play(track, isPreview: false)
             router.present(.player)
         }
     }
 
-    private func lockedSheet(for track: Track) -> some View {
-        LockedContentView(
-            viewModel: LockedContentViewModel(track: track, billing: environment.billing),
-            onPlayPreview: {
-                environment.playback.play(track, isPreview: true)
-                router.present(.player)
-            },
-            onSubscribe: { router.present(.paywall) },
-            onClose: { router.lockedTrack = nil }
-        )
-        .presentationDetents([.height(520), .large])
+    private func sheetContent(_ destination: SheetDestination) -> some View {
+        Group {
+            switch destination {
+            case .lockedTrack(let track):
+                lockedContent(for: track)
+            case .albumPurchase(let album):
+                AlbumPurchaseView(
+                    viewModel: AlbumPurchaseViewModel(album: album, billing: environment.billing),
+                    onSubscribe: { router.present(.paywall) },
+                    onClose: { router.sheet = nil }
+                )
+            }
+        }
+        .presentationDetents([.height(540), .large])
         .presentationDragIndicator(.visible)
         .presentationBackground {
             LinearGradient(
@@ -194,6 +197,18 @@ struct MainShell: View {
                 endPoint: .bottom
             )
         }
+    }
+
+    private func lockedContent(for track: Track) -> some View {
+        LockedContentView(
+            viewModel: LockedContentViewModel(track: track, billing: environment.billing),
+            onPlayPreview: {
+                environment.playback.play(track, isPreview: true)
+                router.present(.player)
+            },
+            onSubscribe: { router.present(.paywall) },
+            onClose: { router.sheet = nil }
+        )
     }
 
     @ViewBuilder

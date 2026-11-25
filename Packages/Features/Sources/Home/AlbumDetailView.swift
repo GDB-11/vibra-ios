@@ -5,12 +5,12 @@ import SwiftUI
 public struct AlbumDetailView: View {
     @State private var viewModel: AlbumDetailViewModel
     private let onSelectTrack: (Track) -> Void
-    private let onBuyAlbum: () -> Void
+    private let onBuyAlbum: (Album) -> Void
 
     public init(
         viewModel: AlbumDetailViewModel,
         onSelectTrack: @escaping (Track) -> Void,
-        onBuyAlbum: @escaping () -> Void
+        onBuyAlbum: @escaping (Album) -> Void
     ) {
         _viewModel = State(initialValue: viewModel)
         self.onSelectTrack = onSelectTrack
@@ -95,7 +95,9 @@ public struct AlbumDetailView: View {
             .buttonStyle(AeroPrimaryButtonStyle())
 
             if content.album.isLocked {
-                Button(action: onBuyAlbum) {
+                Button {
+                    onBuyAlbum(content.album)
+                } label: {
                     Text(String(localized: "Comprar \(content.album.price.formatted)"))
                         .lineLimit(1)
                         .minimumScaleFactor(0.8)
@@ -116,7 +118,7 @@ public struct AlbumDetailView: View {
                 library: SampleLibraryRepository()
             ),
             onSelectTrack: { _ in },
-            onBuyAlbum: {}
+            onBuyAlbum: { _ in }
         )
     }
     .preferredColorScheme(.dark)
