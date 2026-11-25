@@ -4,8 +4,8 @@ App nativa de streaming de música (SwiftUI, Swift 6) para un curso de iOS. *Tod
 
 ## Requisitos
 
-- Xcode 26.6 (versión con la que se creó el proyecto).
-- Objetivo mínimo: iOS 26.5. **Por confirmar** contra el Xcode instalado.
+- Xcode 26.6 (build 17F113).
+- Objetivo mínimo: iOS 26.5, el SDK más reciente de ese Xcode (confirmado el 2026-11-24).
 - La app se ejecuta solo en el simulador.
 
 ## Estructura
