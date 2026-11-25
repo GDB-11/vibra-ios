@@ -36,6 +36,13 @@ let package = Package(
             ],
             path: "Sources/\(name)"
         )
-    },
+    } + [
+        .testTarget(
+            name: "FeaturesTests",
+            dependencies: featureNames.map { .target(name: "\($0)Feature") } + [
+                .product(name: "Domain", package: "Domain")
+            ]
+        )
+    ],
     swiftLanguageModes: [.v6]
 )

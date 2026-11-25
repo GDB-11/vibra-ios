@@ -14,17 +14,52 @@
 		7EB1A00000000000000004C3 /* Store in Frameworks */ = {isa = PBXBuildFile; productRef = 7EB1A00000000000000004B2 /* Store */; };
 		7EB1A00000000000000005C3 /* DesignSystem in Frameworks */ = {isa = PBXBuildFile; productRef = 7EB1A00000000000000005B2 /* DesignSystem */; };
 		7EB1A00000000000000006C3 /* Features in Frameworks */ = {isa = PBXBuildFile; productRef = 7EB1A00000000000000006B2 /* Features */; };
+		7EB1A00000000000000007C3 /* WidgetShared in Frameworks */ = {isa = PBXBuildFile; productRef = 7EB1A00000000000000007B2 /* WidgetShared */; };
+		7EB2B00000000000000000C3 /* DesignSystem in Frameworks */ = {isa = PBXBuildFile; productRef = 7EB2B00000000000000000B2 /* DesignSystem */; };
+		7EB2B00000000000000001C3 /* WidgetShared in Frameworks */ = {isa = PBXBuildFile; productRef = 7EB2B00000000000000001B2 /* WidgetShared */; };
+		7EB2B00000000000000002C3 /* VibraWidgets.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 7EB2B00000000000000000D1 /* VibraWidgets.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		7EB2B00000000000000000E1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 24DAB4FB30B65D8800A9365D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7EB2B00000000000000000F1;
+			remoteInfo = VibraWidgets;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		7EB2B00000000000000000E3 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				7EB2B00000000000000002C3 /* VibraWidgets.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		7EB1A00000000000000099D4 /* Vibra.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Vibra.storekit; sourceTree = "<group>"; };
 		24DAB50330B65D8800A9365D /* Vibra.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vibra.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7EB2B00000000000000000D1 /* VibraWidgets.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = VibraWidgets.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		7EB2B00000000000000000D2 /* VibraWidgets-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "VibraWidgets-Info.plist"; path = "Config/VibraWidgets-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		24DAB50530B65D8800A9365D /* Vibra */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = Vibra;
+			sourceTree = "<group>";
+		};
+		7EB2B00000000000000000D3 /* VibraWidgets */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = VibraWidgets;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -41,6 +76,16 @@
 				7EB1A00000000000000004C3 /* Store in Frameworks */,
 				7EB1A00000000000000005C3 /* DesignSystem in Frameworks */,
 				7EB1A00000000000000006C3 /* Features in Frameworks */,
+				7EB1A00000000000000007C3 /* WidgetShared in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7EB2B00000000000000000A2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7EB2B00000000000000000C3 /* DesignSystem in Frameworks */,
+				7EB2B00000000000000001C3 /* WidgetShared in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -51,6 +96,8 @@
 			isa = PBXGroup;
 			children = (
 				24DAB50530B65D8800A9365D /* Vibra */,
+				7EB2B00000000000000000D3 /* VibraWidgets */,
+				7EB2B00000000000000000D2 /* VibraWidgets-Info.plist */,
 				7EB1A00000000000000099D4 /* Vibra.storekit */,
 				24DAB50430B65D8800A9365D /* Products */,
 			);
@@ -60,6 +107,7 @@
 			isa = PBXGroup;
 			children = (
 				24DAB50330B65D8800A9365D /* Vibra.app */,
+				7EB2B00000000000000000D1 /* VibraWidgets.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -74,10 +122,12 @@
 				24DAB4FF30B65D8800A9365D /* Sources */,
 				24DAB50030B65D8800A9365D /* Frameworks */,
 				24DAB50130B65D8800A9365D /* Resources */,
+				7EB2B00000000000000000E3 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				7EB2B00000000000000000E2 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				24DAB50530B65D8800A9365D /* Vibra */,
@@ -91,10 +141,35 @@
 				7EB1A00000000000000004B2 /* Store */,
 				7EB1A00000000000000005B2 /* DesignSystem */,
 				7EB1A00000000000000006B2 /* Features */,
+				7EB1A00000000000000007B2 /* WidgetShared */,
 			);
 			productName = Vibra;
 			productReference = 24DAB50330B65D8800A9365D /* Vibra.app */;
 			productType = "com.apple.product-type.application";
+		};
+		7EB2B00000000000000000F1 /* VibraWidgets */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7EB2B00000000000000000F2 /* Build configuration list for PBXNativeTarget "VibraWidgets" */;
+			buildPhases = (
+				7EB2B00000000000000000A1 /* Sources */,
+				7EB2B00000000000000000A2 /* Frameworks */,
+				7EB2B00000000000000000A3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				7EB2B00000000000000000D3 /* VibraWidgets */,
+			);
+			name = VibraWidgets;
+			packageProductDependencies = (
+				7EB2B00000000000000000B2 /* DesignSystem */,
+				7EB2B00000000000000001B2 /* WidgetShared */,
+			);
+			productName = VibraWidgets;
+			productReference = 7EB2B00000000000000000D1 /* VibraWidgets.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -107,6 +182,9 @@
 				LastUpgradeCheck = 2660;
 				TargetAttributes = {
 					24DAB50230B65D8800A9365D = {
+						CreatedOnToolsVersion = 26.6;
+					};
+					7EB2B00000000000000000F1 = {
 						CreatedOnToolsVersion = 26.6;
 					};
 				};
@@ -128,6 +206,7 @@
 				7EB1A00000000000000004A1 /* XCLocalSwiftPackageReference "Packages/Store" */,
 				7EB1A00000000000000005A1 /* XCLocalSwiftPackageReference "Packages/DesignSystem" */,
 				7EB1A00000000000000006A1 /* XCLocalSwiftPackageReference "Packages/Features" */,
+				7EB1A00000000000000007A1 /* XCLocalSwiftPackageReference "Packages/WidgetShared" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 24DAB50430B65D8800A9365D /* Products */;
@@ -135,12 +214,20 @@
 			projectRoot = "";
 			targets = (
 				24DAB50230B65D8800A9365D /* Vibra */,
+				7EB2B00000000000000000F1 /* VibraWidgets */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		24DAB50130B65D8800A9365D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7EB2B00000000000000000A3 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -157,7 +244,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		7EB2B00000000000000000A1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		7EB2B00000000000000000E2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7EB2B00000000000000000F1 /* VibraWidgets */;
+			targetProxy = 7EB2B00000000000000000E1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		24DAB50C30B65D8A00A9365D /* Debug */ = {
@@ -288,6 +390,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -320,6 +423,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -335,6 +439,62 @@
 				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		7EB2B00000000000000000F3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Config/VibraWidgets-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = Vibra;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = vibra.Vibra.Widgets;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_STRICT_CONCURRENCY = complete;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		7EB2B00000000000000000F4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Config/VibraWidgets-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = Vibra;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = vibra.Vibra.Widgets;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_STRICT_CONCURRENCY = complete;
@@ -360,6 +520,15 @@
 			buildConfigurations = (
 				24DAB50F30B65D8A00A9365D /* Debug */,
 				24DAB51030B65D8A00A9365D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7EB2B00000000000000000F2 /* Build configuration list for PBXNativeTarget "VibraWidgets" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7EB2B00000000000000000F3 /* Debug */,
+				7EB2B00000000000000000F4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -395,6 +564,10 @@
 			isa = XCLocalSwiftPackageReference;
 			relativePath = Packages/Features;
 		};
+		7EB1A00000000000000007A1 /* XCLocalSwiftPackageReference "Packages/WidgetShared" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = Packages/WidgetShared;
+		};
 /* End XCLocalSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -425,6 +598,18 @@
 		7EB1A00000000000000006B2 /* Features */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Features;
+		};
+		7EB1A00000000000000007B2 /* WidgetShared */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = WidgetShared;
+		};
+		7EB2B00000000000000000B2 /* DesignSystem */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = DesignSystem;
+		};
+		7EB2B00000000000000001B2 /* WidgetShared */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = WidgetShared;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -4,9 +4,11 @@ import SwiftUI
 /// composición, inyección de dependencias y navegación.
 @main
 struct VibraApp: App {
+    private let environment = AppEnvironment.sample()
+
     var body: some Scene {
         WindowGroup {
-            RootView()
+            RootView(environment: environment)
         }
     }
 }
