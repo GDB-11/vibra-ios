@@ -16,18 +16,19 @@ public struct UserProfile: Hashable, Sendable {
 }
 
 public struct Plan: Identifiable, Hashable, Sendable {
-    public enum Code: String, Hashable, Sendable {
+    public enum Interval: String, Hashable, Sendable {
         case monthly
         case annual
     }
 
-    public let code: Code
+    /// Código público del plan (UUID); se envía como `planCode` al suscribirse.
+    public let id: String
+    public let interval: Interval
     public let price: Money
 
-    public var id: Code { code }
-
-    public init(code: Code, price: Money) {
-        self.code = code
+    public init(id: String, interval: Interval, price: Money) {
+        self.id = id
+        self.interval = interval
         self.price = price
     }
 }

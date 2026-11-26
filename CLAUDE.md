@@ -37,6 +37,7 @@ Data flow: `View → ViewModel (@Observable, @MainActor) → Repository (protoco
 ## Rules
 
 - Features depend on `Domain` and `DesignSystem` only. **Never import one feature from another.** Cross-feature navigation goes through the router in the app target.
+- IDs from the API are public UUID codes, kept as `String`. A plan is identified by its ID (sent as `planCode`); monthly/annual is its `interval`.
 - No business logic or networking in views. Views render state and send intents to the ViewModel.
 - Swift 6 strict concurrency stays on. Fix data-race warnings properly; do not silence them with `@unchecked Sendable` or `nonisolated(unsafe)` without a comment explaining why.
 - Use `@Observable` (Observation framework), async/await, and actors. No Combine for new code, no completion handlers.
@@ -59,7 +60,7 @@ Data flow: `View → ViewModel (@Observable, @MainActor) → Repository (protoco
 ## StoreKit 2 (demo mode)
 
 - Products are defined in the local `Vibra.storekit` file (attached to the scheme). No App Store Connect.
-- Subscription group with monthly + annual; non-consumables for a few albums/tracks, mapped by `store_product_id`.
+- Subscription group with monthly + annual; non-consumables for a few albums/tracks, mapped by the API's `storeProductId`.
 - After a purchase, send the transaction to `POST /v1/storekit/transactions`. The backend trusts it in demo mode only.
 - Listen to `Transaction.updates` from app launch.
 - The `.storekit` renewal rate is set to "Monthly Renewal Every 30 Seconds" for demos.

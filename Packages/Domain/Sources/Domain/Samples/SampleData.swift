@@ -5,8 +5,8 @@ public enum SampleData {
     public static let entitlements = Entitlements(hasActiveSubscription: false)
 
     public static let plans = [
-        Plan(code: .monthly, price: usd(999)),
-        Plan(code: .annual, price: usd(8999))
+        Plan(id: "6f1c2a9e-3b47-4d0a-9c5e-1a2b3c4d5e6f", interval: .monthly, price: usd(999)),
+        Plan(id: "b8d4e7f1-5a26-4c93-8e0d-7f6a5b4c3d2e", interval: .annual, price: usd(8999))
     ]
 
     public static let artist = Artist(

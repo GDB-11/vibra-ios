@@ -38,7 +38,7 @@ public protocol StreamingRepository: Sendable {
 public protocol BillingRepository: Sendable {
     func entitlements() async throws -> Entitlements
     func plans() async throws -> [Plan]
-    func subscribe(to plan: Plan.Code) async throws
+    func subscribe(toPlan id: Plan.ID) async throws
     func purchaseTrack(id: String) async throws
     func purchaseAlbum(id: String) async throws
     func restorePurchases() async throws

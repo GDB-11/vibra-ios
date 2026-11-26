@@ -52,7 +52,7 @@ public final class AlbumPurchaseViewModel {
 @Observable
 @MainActor
 public final class PaywallViewModel {
-    public var selectedPlan: Plan.Code = .annual
+    public var selectedPlan: Plan.Interval = .annual
     public private(set) var state: LoadState<[Plan]> = .idle
 
     private let billing: any BillingRepository
@@ -75,8 +75,8 @@ public final class PaywallViewModel {
     /// Ahorro del plan anual frente a doce mensualidades, en porcentaje entero.
     public var annualSavingsPercent: Int? {
         guard let plans = state.value,
-              let monthly = plans.first(where: { $0.code == .monthly }),
-              let annual = plans.first(where: { $0.code == .annual }),
+              let monthly = plans.first(where: { $0.interval == .monthly }),
+              let annual = plans.first(where: { $0.interval == .annual }),
               monthly.price.currencyCode == annual.price.currencyCode
         else { return nil }
         let yearly = monthly.price.cents * 12
@@ -86,8 +86,9 @@ public final class PaywallViewModel {
 
     /// Devuelve `true` si el muro de pago puede cerrarse.
     public func subscribe() async -> Bool {
+        guard let plan = state.value?.first(where: { $0.interval == selectedPlan }) else { return false }
         do {
-            try await billing.subscribe(to: selectedPlan)
+            try await billing.subscribe(toPlan: plan.id)
             return true
         } catch {
             // Falta mostrar el error cuando exista la compra real con StoreKit.

@@ -98,14 +98,14 @@ public struct PaywallView: View {
     }
 
     private func planCard(_ plan: Plan) -> some View {
-        let isSelected = viewModel.selectedPlan == plan.code
+        let isSelected = viewModel.selectedPlan == plan.interval
         let shape = RoundedRectangle(cornerRadius: 16, style: .continuous)
 
         return Button {
-            viewModel.selectedPlan = plan.code
+            viewModel.selectedPlan = plan.interval
         } label: {
             HStack {
-                Text(name(of: plan.code))
+                Text(name(of: plan.interval))
                 Spacer()
                 Text(priceLabel(of: plan))
             }
@@ -122,7 +122,7 @@ public struct PaywallView: View {
         }
         .buttonStyle(.plain)
         .overlay(alignment: .topTrailing) {
-            if plan.code == .annual, let savings = viewModel.annualSavingsPercent {
+            if plan.interval == .annual,let savings = viewModel.annualSavingsPercent {
                 AeroBadge(String(localized: "AHORRA \((Double(savings) / 100).formatted(.percent))"))
                     .offset(x: -14, y: -12)
             }
@@ -130,15 +130,15 @@ public struct PaywallView: View {
         .accessibilityAddTraits(isSelected ? .isSelected : [])
     }
 
-    private func name(of code: Plan.Code) -> String {
-        switch code {
+    private func name(of interval: Plan.Interval) -> String {
+        switch interval {
         case .monthly: String(localized: "Mensual")
         case .annual: String(localized: "Anual")
         }
     }
 
     private func priceLabel(of plan: Plan) -> String {
-        switch plan.code {
+        switch plan.interval {
         case .monthly: String(localized: "\(plan.price.formatted)/mes")
         case .annual: String(localized: "\(plan.price.formatted)/año")
         }

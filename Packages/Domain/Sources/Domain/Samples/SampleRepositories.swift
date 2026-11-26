@@ -101,7 +101,7 @@ public struct SampleBillingRepository: BillingRepository {
 
     public func entitlements() async throws -> Entitlements { SampleData.entitlements }
     public func plans() async throws -> [Plan] { SampleData.plans }
-    public func subscribe(to plan: Plan.Code) async throws {}
+    public func subscribe(toPlan id: Plan.ID) async throws {}
     public func purchaseTrack(id: String) async throws {}
     public func purchaseAlbum(id: String) async throws {}
     public func restorePurchases() async throws {}
