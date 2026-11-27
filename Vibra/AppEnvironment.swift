@@ -1,9 +1,10 @@
 import Domain
+import Playback
 
 /// Composición de dependencias de la app.
 ///
-/// Para integrar el backend, sustituye aquí cada `Sample*` por su implementación de Networking
-/// (y el reproductor por el de Playback). Ninguna funcionalidad necesita cambiar.
+/// Para integrar el backend, sustituye aquí cada `Sample*` por su implementación de Networking.
+/// Ninguna funcionalidad necesita cambiar.
 struct AppEnvironment {
     let auth: any AuthRepository
     let catalog: any CatalogRepository
@@ -14,14 +15,21 @@ struct AppEnvironment {
     let playback: any PlaybackControlling
 
     static func sample() -> AppEnvironment {
-        AppEnvironment(
+        // TEMPORAL: ver PENDIENTE-fuente-de-audio.md.
+        #if DEBUG
+        let streaming = DebugStreamingRepository()
+        #else
+        let streaming = SampleStreamingRepository()
+        #endif
+
+        return AppEnvironment(
             auth: SampleAuthRepository(),
             catalog: SampleCatalogRepository(),
             search: SampleSearchRepository(),
             library: SampleLibraryRepository(),
-            streaming: SampleStreamingRepository(),
+            streaming: streaming,
             billing: SampleBillingRepository(),
-            playback: SamplePlaybackController()
+            playback: PlaybackService(streaming: streaming)
         )
     }
 }

@@ -48,6 +48,7 @@
 		7EB1A00000000000000099D4 /* Vibra.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Vibra.storekit; sourceTree = "<group>"; };
 		24DAB50330B65D8800A9365D /* Vibra.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vibra.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EB2B00000000000000000D1 /* VibraWidgets.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = VibraWidgets.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		7EB1A00000000000000099D5 /* Vibra-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Vibra-Info.plist"; path = "Config/Vibra-Info.plist"; sourceTree = "<group>"; };
 		7EB2B00000000000000000D2 /* VibraWidgets-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "VibraWidgets-Info.plist"; path = "Config/VibraWidgets-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -97,6 +98,7 @@
 			children = (
 				24DAB50530B65D8800A9365D /* Vibra */,
 				7EB2B00000000000000000D3 /* VibraWidgets */,
+				7EB1A00000000000000099D5 /* Vibra-Info.plist */,
 				7EB2B00000000000000000D2 /* VibraWidgets-Info.plist */,
 				7EB1A00000000000000099D4 /* Vibra.storekit */,
 				24DAB50430B65D8800A9365D /* Products */,
@@ -390,6 +392,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Config/Vibra-Info.plist";
 				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -423,6 +426,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Config/Vibra-Info.plist";
 				INFOPLIST_KEY_NSSupportsLiveActivities = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

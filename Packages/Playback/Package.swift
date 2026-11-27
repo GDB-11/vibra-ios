@@ -18,6 +18,13 @@ let package = Package(
             dependencies: [
                 .product(name: "Domain", package: "Domain")
             ]
+        ),
+        .testTarget(
+            name: "PlaybackTests",
+            dependencies: [
+                "Playback",
+                .product(name: "Domain", package: "Domain")
+            ]
         )
     ],
     swiftLanguageModes: [.v6]

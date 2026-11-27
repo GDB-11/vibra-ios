@@ -4,7 +4,18 @@ App nativa de streaming de música (SwiftUI, Swift 6) para un curso de iOS. *Tod
 
 ## Estado actual
 
-Están las pantallas del diseño (estilo Aeroglass sobre Liquid Glass) con navegación completa y datos de ejemplo. No hay lógica: sin red, sin audio y sin compras. Reproducir, saltar, "Me gusta", comprar y restaurar envían la intención, pero no cambian nada.
+Están las pantallas del diseño (estilo Aeroglass sobre Liquid Glass) con navegación completa y datos de ejemplo. Sin red y sin compras: "Me gusta", comprar y restaurar envían la intención, pero no cambian nada.
+
+El reproductor es real (`PlaybackService`), con audio en segundo plano. Todavía no hay cola, así que saltar de canción no hace nada.
+
+> **Pendiente:** la fuente de audio es temporal. Ver [PENDIENTE-fuente-de-audio.md](PENDIENTE-fuente-de-audio.md).
+
+## Probar el audio (solo Debug)
+
+1. Entra en la app, toca **Audio (DEBUG)** y pega una URL firmada `https`. Usa una vigencia mayor que la duración de la pista.
+2. Toca una canción. Todas suenan con ese archivo; en una vista previa tampoco se corta a los 30 s.
+
+Sin una URL, el reproductor queda vacío. La URL se olvida al cerrar la app. No la guardes en el repositorio, en notas ni en capturas, y revisa los registros de la consola antes de compartirlos.
 
 ## Requisitos
 
@@ -18,11 +29,11 @@ Están las pantallas del diseño (estilo Aeroglass sobre Liquid Glass) con naveg
 |---|---|
 | `Vibra/` | Objetivo delgado: composición (`AppEnvironment`), navegación (`Navigation/`) y Live Activity |
 | `VibraWidgets/` | Extensión con el widget "Reproduciendo ahora" y la Live Activity |
-| `Config/` | `Info.plist` parcial de la extensión |
+| `Config/` | `Info.plist` parciales de la app (modo de fondo de audio) y de la extensión |
 | `Packages/Domain` | Modelos, protocolos de repositorio y datos de ejemplo (`Samples/`), sin dependencias |
 | `Packages/Networking` | Cliente de API y copia sincronizada del contrato |
 | `Packages/Persistence` | Caché y metadatos de descargas |
-| `Packages/Playback` | Reproducción de audio |
+| `Packages/Playback` | `PlaybackService`: `AVPlayer`, sesión de audio, Now Playing y comandos remotos |
 | `Packages/Store` | StoreKit 2 y derechos |
 | `Packages/DesignSystem` | Colores y componentes Aeroglass |
 | `Packages/Features` | Un objetivo `<Nombre>Feature` por funcionalidad |
@@ -47,7 +58,7 @@ Están las pantallas del diseño (estilo Aeroglass sobre Liquid Glass) con naveg
 
 1. Sincroniza el contrato y genera el cliente en `Networking`.
 2. Implementa allí los protocolos de `Packages/Domain/Sources/Domain/Repositories`.
-3. Sustituye los `Sample*` en `Vibra/AppEnvironment.swift`. El reproductor real (`PlaybackControlling`) saldrá de `Playback` y debe ser `@Observable`.
+3. Sustituye los `Sample*` en `Vibra/AppEnvironment.swift`. El reproductor ya es el de `Playback`; la fuente de audio se sustituye según [PENDIENTE-fuente-de-audio.md](PENDIENTE-fuente-de-audio.md).
 4. Revisa `MainShell.open(_:)`: el `403` de `streamAccess` debe abrir la hoja de bloqueo con su `previewUrl`.
 5. Revisa los comentarios "Falta mostrar el error" en los ViewModels.
 
@@ -58,7 +69,7 @@ Están las pantallas del diseño (estilo Aeroglass sobre Liquid Glass) con naveg
 - **Widget:** ejecuta la app y, en la pantalla de inicio del simulador, añade el widget mediano de Vibra. Muestra datos fijos.
 - **Live Activity:** abre una canción y bloquea el simulador (⌘L). También aparece en la Dynamic Island si el simulador la tiene. Se cierra al cerrar sesión.
 - Tocar cualquiera de las dos abre el reproductor, siempre que haya sesión.
-- Sus controles son solo visuales (harían falta App Intents). Los controles multimedia del sistema llegarán con la reproducción real (`MPNowPlayingInfoCenter`).
+- Sus controles son solo visuales (harían falta App Intents). Los controles multimedia del sistema (reproducir, pausar y mover la posición) los da `PlaybackService`.
 - Todavía no hay App Group; se necesitará cuando el widget muestre datos reales.
 
 ## Compilar y ejecutar
@@ -77,6 +88,13 @@ En Xcode, abre `Vibra.xcodeproj`, elige un simulador y pulsa ⌘R.
 ```bash
 cd Packages/Features
 xcodebuild -scheme Features -destination 'platform=iOS Simulator,name=<simulador>' test
+```
+
+`PlaybackTests` cubre `PlaybackService` con dobles de prueba, sin red ni audio:
+
+```bash
+cd Packages/Playback
+xcodebuild -scheme Playback -destination 'platform=iOS Simulator,name=<simulador>' test
 ```
 
 ## Contrato de la API
